@@ -1,0 +1,36 @@
+
+{
+  // Identificador único de la aplicación.
+  "id": "./",
+
+  // Nombre completo que se mostrará al instalar la aplicación.
+  "name": "Alcázares Volley Elite",
+
+  // Nombre corto para espacios reducidos, como el icono del celular.
+  "short_name": "Volley Elite",
+
+  // Descripción de la aplicación.
+  "description": "Aplicación para registrar partidos y analizar el rendimiento de voleibol.",
+
+  // Idioma principal de la interfaz.
+  "lang": "es",
+
+  // Dirección que se abrirá cuando el usuario inicie la aplicación.
+  "start_url": "./",
+
+  // Limita la navegación de la aplicación a esta ruta y sus subrutas.
+  "scope": "./",
+
+  // Hace que la aplicación se abra en una ventana independiente
+  // de la interfaz habitual del navegador, cuando sea compatible.
+  "display": "standalone",
+
+  // Color de fondo utilizado durante el inicio de la aplicación.
+  "background_color": "#101820",
+
+  // Color de la interfaz del navegador en dispositivos compatibles.
+  "theme_color": "#101820",
+
+  // Permite que la aplicación se adapte a distintas orientaciones.
+  "orientation": "any"
+}

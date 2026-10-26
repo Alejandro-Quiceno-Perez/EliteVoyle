@@ -1,0 +1,736 @@
+<!doctype html>
+<!--
+  PROYECTO: Alcázares Volley Elite
+  ARCHIVO: index.html
+
+  PROPÓSITO:
+  Define la estructura visual de la aplicación de voleibol.
+  Aquí organizamos las secciones, formularios, botones y espacios
+  donde JavaScript mostrará los datos.
+
+  IMPORTANTE:
+  HTML define la estructura; CSS define la apariencia;
+  JavaScript controla la lógica y el comportamiento.
+-->
+
+<!-- Indica que este documento utiliza HTML5. -->
+<html lang="es">
+  <head>
+    <!-- Permite mostrar correctamente caracteres como ñ y tildes. -->
+    <meta charset="UTF-8" />
+
+    <!-- Hace que el diseño se adapte a móviles, tabletas y computadores. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Nombre que aparece en la pestaña del navegador. -->
+    <title>Alcázares Volley Elite</title>
+
+    <!-- Configuración para instalar la aplicación como PWA. -->
+    <link rel="manifest" href="./manifest.webmanifest" />
+
+    <!-- Color de la interfaz del navegador en dispositivos compatibles. -->
+    <meta name="theme-color" content="#101820" />
+
+    <!--
+      BOOTSTRAP:
+      Biblioteca CSS externa que facilita la creación de diseños
+      adaptables, formularios, botones y sistemas de columnas.
+    -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <!--
+      CSS PROPIO:
+      Contiene los estilos personalizados de nuestra aplicación,
+      como los colores, las tarjetas y el diseño del marcador.
+    -->
+    <link rel="stylesheet" href="./css/styles1.css" />
+  </head>
+
+  <body>
+    <!--
+      CONTENEDOR PRINCIPAL:
+      Agrupa toda la aplicación.
+      La clase app-layout se utiliza desde CSS para organizar
+      la barra lateral y el contenido principal.
+    -->
+    <div class="app-layout">
+      <!-- =====================================================
+           1. BARRA LATERAL Y NAVEGACIÓN
+           =====================================================
+
+           Contiene el nombre de la aplicación y los enlaces
+           para desplazarse entre sus secciones.
+      -->
+      <aside class="sidebar">
+        <!--
+          LOGOTIPO:
+          El enlace lleva al Dashboard cuando se hace clic.
+          href="#dashboard" apunta a la sección con ese ID.
+        -->
+        <a href="#dashboard" class="brand">
+          <span class="brand-icon">V</span>
+
+          <span>
+            <strong>ALCÁZARES</strong>
+            <small>VOLLEY ELITE</small>
+          </span>
+        </a>
+
+        <!-- Texto decorativo que identifica el menú. -->
+        <p class="nav-label">MENÚ PRINCIPAL</p>
+
+        <!--
+          MENÚ DE NAVEGACIÓN:
+          Cada enlace apunta al ID de una sección de la página.
+          Por ejemplo, href="#jugadores" lleva a id="jugadores".
+        -->
+        <nav class="app-nav">
+          <!-- active identifica visualmente la opción seleccionada. -->
+          <a href="#dashboard" class="nav-link active">
+            <span>▦</span> Dashboard
+          </a>
+
+          <a href="#partido" class="nav-link"> <span>🏐</span> Partido </a>
+
+          <a href="#jugadores" class="nav-link"> <span>♙</span> Jugadores </a>
+
+          <a href="#jugadas" class="nav-link">
+            <span>≋</span> Registro de jugadas
+          </a>
+
+          <a href="#informes" class="nav-link">
+            <span>▥</span> Informes y estadísticas
+          </a>
+
+          <a href="#historial" class="nav-link"> <span>◷</span> Historial </a>
+        </nav>
+
+        <!-- Indicador visual de que la aplicación guarda datos localmente. -->
+        <div class="sidebar-footer">
+          <span class="status-dot"></span>
+          Datos guardados localmente
+        </div>
+      </aside>
+
+      <!-- =====================================================
+           2. CONTENIDO PRINCIPAL
+           =====================================================
+
+           Aquí se encuentran todas las funcionalidades
+           que utiliza el entrenador.
+      -->
+      <main class="main-content">
+        <!-- CABECERA: título general de la aplicación. -->
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">CENTRO DE CONTROL</p>
+            <h1>Panel deportivo</h1>
+          </div>
+
+          <span class="local-badge">● Aplicación local</span>
+        </header>
+
+        <!-- ===================================================
+             3. DASHBOARD: RESUMEN DEL RENDIMIENTO
+             ===================================================
+
+             Muestra indicadores generales.
+             Los valores iniciales son 0; JavaScript puede
+             actualizarlos según los datos guardados.
+        -->
+        <section id="dashboard" class="dashboard-section">
+          <!--
+            Clases de Bootstrap:
+            row crea una fila y g-3 establece el espacio entre columnas.
+            mb-4 agrega margen inferior.
+          -->
+          <div class="row g-3 mb-4">
+            <!-- Tarjeta: cantidad de partidos registrados. -->
+            <div class="col-6 col-xl-3">
+              <article class="stat-card">
+                <span class="stat-icon">◷</span>
+                <p>Partidos registrados</p>
+                <strong id="dashboardMatches">0</strong>
+              </article>
+            </div>
+
+            <!-- Tarjeta: cantidad de jugadores del partido. -->
+            <div class="col-6 col-xl-3">
+              <article class="stat-card">
+                <span class="stat-icon">♙</span>
+                <p>Jugadores del partido</p>
+                <strong id="dashboardPlayers">0</strong>
+              </article>
+            </div>
+
+            <!-- Tarjeta: cantidad de acciones positivas. -->
+            <div class="col-6 col-xl-3">
+              <article class="stat-card">
+                <span class="stat-icon">↗</span>
+                <p>Acciones positivas</p>
+                <strong id="dashboardPositive">0</strong>
+              </article>
+            </div>
+
+            <!-- Tarjeta: cantidad de acciones negativas. -->
+            <div class="col-6 col-xl-3">
+              <article class="stat-card">
+                <span class="stat-icon">↘</span>
+                <p>Acciones negativas</p>
+                <strong id="dashboardNegative">0</strong>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <!-- ===================================================
+             4. PARTIDO ACTUAL Y MARCADOR
+             ===================================================
+
+             Permite crear un encuentro, identificar los equipos,
+             visualizar los puntos y consultar los sets.
+        -->
+        <section id="partido" class="content-panel mb-4">
+          <!-- Título y estado actual del partido. -->
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">GESTIÓN DEL ENCUENTRO</p>
+              <h2>Partido actual</h2>
+            </div>
+
+            <!-- JavaScript puede cambiar este texto según el estado. -->
+            <span id="matchStatus" class="status-badge"> Sin partido </span>
+          </div>
+
+          <!-- FORMULARIO PARA CREAR EL PARTIDO. -->
+          <div class="row g-3 mb-4">
+            <!-- Campo para escribir el nombre del equipo local. -->
+            <div class="col-md-6">
+              <label for="team" class="form-label">Equipo local</label>
+
+              <input
+                type="text"
+                id="team"
+                class="form-control"
+                placeholder="Ej. Alcázares Volley Elite"
+              />
+            </div>
+
+            <!-- Campo para escribir el nombre del equipo rival. -->
+            <div class="col-md-6">
+              <label for="opponentTeam" class="form-label">
+                Equipo visitante
+              </label>
+
+              <input
+                type="text"
+                id="opponentTeam"
+                class="form-control"
+                placeholder="Nombre del rival"
+              />
+            </div>
+
+            <!--
+              Botón de creación.
+              JavaScript escucha el evento click de este ID
+              para validar los nombres y crear el partido.
+            -->
+            <div class="col-12">
+              <button
+                type="button"
+                id="createMatchButton"
+                class="btn btn-accent"
+              >
+                + Crear partido
+              </button>
+            </div>
+          </div>
+
+          <!--
+            MARCADOR VISUAL:
+            Contiene los nombres de ambos equipos, los puntos
+            del set actual y la información general del encuentro.
+          -->
+          <div class="scoreboard-panel">
+            <!-- Información del equipo local. -->
+            <div class="score-team">
+              <span class="team-emblem">A</span>
+
+              <!-- JavaScript puede actualizar el nombre del equipo. -->
+              <h3 id="homeTeamName">Equipo local</h3>
+
+              <small>LOCAL</small>
+            </div>
+
+            <!-- Puntuación central del encuentro. -->
+            <div class="score-center">
+              <!-- Número del set que se está jugando. -->
+              <p id="currentSet">Sin partido</p>
+
+              <!-- Marcador de puntos del set actual. -->
+              <div class="score-numbers">
+                <span id="scoreboard">0 - 0</span>
+              </div>
+
+              <!-- Marcador de sets ganados por cada equipo. -->
+              <p class="sets-label">
+                Sets: <strong id="setsScore">0 - 0</strong>
+              </p>
+
+              <!-- Texto descriptivo del partido. -->
+              <p id="matchTitle" class="match-title">
+                No hay un partido activo
+              </p>
+            </div>
+
+            <!-- Información del equipo visitante. -->
+            <div class="score-team">
+              <span class="team-emblem opponent-emblem">R</span>
+
+              <h3 id="opponentTeamName">Equipo visitante</h3>
+
+              <small>VISITANTE</small>
+            </div>
+          </div>
+
+          <!--
+            CONTROLES DEL MARCADOR:
+            Los botones empiezan deshabilitados.
+            match.js controla cuándo pueden utilizarse.
+            No añadimos onclick aquí porque los eventos
+            ya se conectan desde match.js.
+          -->
+          <div class="score-controls">
+            <!-- Registra un punto para el equipo local. -->
+            <button
+              type="button"
+              id="homePointButton"
+              class="btn btn-accent"
+              disabled
+            >
+              + Punto local
+            </button>
+
+            <!-- Permite revertir el último punto del marcador. -->
+            <button
+              type="button"
+              id="undoLastPointButton"
+              class="btn btn-outline-warning"
+              disabled
+            >
+              ↶ Deshacer punto
+            </button>
+
+            <!-- Registra un punto para el equipo visitante. -->
+            <button
+              type="button"
+              id="opponentPointButton"
+              class="btn btn-danger"
+              disabled
+            >
+              + Punto visitante
+            </button>
+
+            <!-- Inicia el proceso para finalizar el encuentro. -->
+            <button
+              type="button"
+              id="finishMatchButton"
+              class="btn btn-outline-light"
+              disabled
+            >
+              Finalizar partido
+            </button>
+          </div>
+
+          <!-- Aquí se muestran los resultados de los sets finalizados. -->
+          <div class="set-history">
+            <strong>Resultado de los sets</strong>
+
+            <p id="setHistory" class="mb-0 mt-2">
+              Todavía no hay sets finalizados.
+            </p>
+          </div>
+        </section>
+
+        <!-- ===================================================
+             5. GESTIÓN DE JUGADORES
+             ===================================================
+
+             Permite registrar el nombre y el número de camiseta
+             de cada jugador del partido activo.
+        -->
+        <section id="jugadores" class="content-panel mb-4">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">PLANTILLA</p>
+              <h2>Jugadores</h2>
+            </div>
+          </div>
+
+          <!-- Formulario para agregar jugadores. -->
+          <div class="row g-3 align-items-end">
+            <!-- Campo para el nombre del jugador. -->
+            <div class="col-md-7">
+              <label for="playerName" class="form-label">
+                Nombre completo
+              </label>
+
+              <input
+                type="text"
+                id="playerName"
+                class="form-control"
+                placeholder="Nombre del jugador"
+              />
+            </div>
+
+            <!-- Campo numérico para el número de camiseta. -->
+            <div class="col-md-3">
+              <label for="playerNumber" class="form-label"> Camiseta </label>
+
+              <input
+                type="number"
+                id="playerNumber"
+                class="form-control"
+                placeholder="Número"
+              />
+            </div>
+
+            <!-- JavaScript valida y registra al jugador al hacer clic. -->
+            <div class="col-md-2">
+              <button
+                type="button"
+                id="addPlayerButton"
+                class="btn btn-accent w-100"
+              >
+                Agregar
+              </button>
+            </div>
+          </div>
+
+          <!--
+            LISTA DINÁMICA:
+            players.js inserta aquí los jugadores registrados.
+            El contenido no necesita escribirse manualmente en HTML.
+          -->
+          <ul id="playerList" class="list-group player-list mt-4"></ul>
+        </section>
+
+        <!-- ===================================================
+             6. REGISTRO RÁPIDO DE JUGADAS
+             ===================================================
+
+             Permite seleccionar un jugador y registrar
+             el resultado de una recepción, ataque, bloqueo o saque.
+        -->
+        <section id="jugadas" class="content-panel quick-actions-panel mb-4">
+          <!-- Título y jugador seleccionado. -->
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">REGISTRO EN VIVO</p>
+              <h2>Jugadas rápidas</h2>
+            </div>
+
+            <!-- JavaScript muestra aquí el jugador seleccionado. -->
+            <span id="selectedPlayerBadge" class="status-badge">
+              Sin jugador
+            </span>
+          </div>
+
+          <!-- PASO 1: SELECCIONAR AL JUGADOR. -->
+          <div class="quick-step">
+            <p class="quick-label">1. Selecciona al jugador</p>
+
+            <!--
+              actions.js crea dinámicamente un botón por jugador.
+              El usuario selecciona a quién corresponde la jugada.
+            -->
+            <div id="actionPlayersGrid" class="action-players-grid">
+              <p class="text-secondary">
+                Crea un partido y agrega sus jugadores.
+              </p>
+            </div>
+          </div>
+
+          <!-- PASO 2: REGISTRAR EL TIPO Y RESULTADO DE LA JUGADA. -->
+          <div class="quick-step">
+            <p class="quick-label">2. Registra la jugada</p>
+
+            <!--
+              Cada botón llama a recordQuickAction(tipo, resultado).
+              Los parámetros indican qué acción se registra y si fue
+              positiva o negativa.
+            -->
+            <div class="quick-action-grid">
+              <!-- Recepción positiva. -->
+              <button
+                type="button"
+                class="quick-action-button positive"
+                onclick="recordQuickAction('Recepción', 'Positiva')"
+              >
+                <span class="quick-action-name">Recepción</span>
+                <span class="quick-action-result">✓ Positiva</span>
+              </button>
+
+              <!-- Recepción negativa. -->
+              <button
+                type="button"
+                class="quick-action-button negative"
+                onclick="recordQuickAction('Recepción', 'Negativa')"
+              >
+                <span class="quick-action-name">Recepción</span>
+                <span class="quick-action-result">✕ Negativa</span>
+              </button>
+
+              <!-- Ataque positivo. -->
+              <button
+                type="button"
+                class="quick-action-button positive"
+                onclick="recordQuickAction('Ataque', 'Positiva')"
+              >
+                <span class="quick-action-name">Ataque</span>
+                <span class="quick-action-result">✓ Positiva</span>
+              </button>
+
+              <!-- Ataque negativo. -->
+              <button
+                type="button"
+                class="quick-action-button negative"
+                onclick="recordQuickAction('Ataque', 'Negativa')"
+              >
+                <span class="quick-action-name">Ataque</span>
+                <span class="quick-action-result">✕ Negativa</span>
+              </button>
+
+              <!-- Bloqueo positivo. -->
+              <button
+                type="button"
+                class="quick-action-button positive"
+                onclick="recordQuickAction('Bloqueo', 'Positiva')"
+              >
+                <span class="quick-action-name">Bloqueo</span>
+                <span class="quick-action-result">✓ Positiva</span>
+              </button>
+
+              <!-- Bloqueo negativo. -->
+              <button
+                type="button"
+                class="quick-action-button negative"
+                onclick="recordQuickAction('Bloqueo', 'Negativa')"
+              >
+                <span class="quick-action-name">Bloqueo</span>
+                <span class="quick-action-result">✕ Negativa</span>
+              </button>
+
+              <!-- Saque positivo. -->
+              <button
+                type="button"
+                class="quick-action-button positive"
+                onclick="recordQuickAction('Saque', 'Positiva')"
+              >
+                <span class="quick-action-name">Saque</span>
+                <span class="quick-action-result">✓ Positiva</span>
+              </button>
+
+              <!-- Saque negativo. -->
+              <button
+                type="button"
+                class="quick-action-button negative"
+                onclick="recordQuickAction('Saque', 'Negativa')"
+              >
+                <span class="quick-action-name">Saque</span>
+                <span class="quick-action-result">✕ Negativa</span>
+              </button>
+            </div>
+          </div>
+
+          <!--
+            RETROALIMENTACIÓN:
+            Muestra un mensaje sobre la última acción.
+            aria-live="polite" permite que lectores de pantalla
+            anuncien los cambios de este mensaje.
+          -->
+          <div class="quick-feedback-row">
+            <p id="lastActionFeedback" aria-live="polite">
+              Selecciona un jugador para comenzar.
+            </p>
+
+            <!--
+              DESHACER:
+              actions.js solicita confirmación y elimina la última
+              jugada del partido activo si el usuario lo confirma.
+            -->
+            <button
+              type="button"
+              id="undoLastActionButton"
+              class="btn btn-outline-light"
+              onclick="undoLastAction()"
+              disabled
+            >
+              ↶ Deshacer
+            </button>
+          </div>
+
+          <!--
+            HISTORIAL DE JUGADAS:
+            details y summary permiten mostrar u ocultar la lista
+            sin ocupar espacio cuando no se necesita consultar.
+          -->
+          <details class="quick-history">
+            <summary>
+              Historial de jugadas
+
+              <!-- actions.js actualiza la cantidad de registros. -->
+              <span id="actionCountBadge">0 registros</span>
+            </summary>
+
+            <!-- actions.js dibuja aquí el historial de acciones. -->
+            <ul id="actionList" class="list-group action-list mt-3"></ul>
+          </details>
+        </section>
+
+        <!-- ===================================================
+             7. INFORMES Y ESTADÍSTICAS
+             ===================================================
+
+             Es el espacio donde se presentan los resultados
+             del análisis del rendimiento deportivo.
+        -->
+        <section id="informes" class="content-panel mb-4">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">ANÁLISIS DEPORTIVO</p>
+              <h2>Rendimiento y estadísticas</h2>
+            </div>
+          </div>
+
+          <p class="text-secondary">
+            Compara las acciones de los jugadores y analiza la efectividad del
+            equipo por set.
+          </p>
+
+          <!--
+            Al hacer clic se ejecuta generateReport(),
+            función definida en report.js.
+          -->
+          <button
+            type="button"
+            class="btn btn-accent"
+            onclick="generateReport()"
+          >
+            Generar análisis
+          </button>
+
+          <!--
+            CONTENEDOR DEL INFORME:
+            report.js inserta aquí las estadísticas y las gráficas.
+          -->
+          <div id="reportContent" class="mt-4">
+            Aquí aparecerán las estadísticas y gráficas.
+          </div>
+        </section>
+
+        <!-- ===================================================
+             8. HISTORIAL DE PARTIDOS FINALIZADOS
+             ===================================================
+
+             Muestra los encuentros anteriores que se han guardado.
+        -->
+        <section id="historial" class="content-panel mb-4">
+          <div class="section-heading">
+            <div>
+              <p class="eyebrow">REGISTROS ANTERIORES</p>
+              <h2>Historial de partidos</h2>
+            </div>
+          </div>
+
+          <!--
+            match.js consulta los datos guardados y genera
+            una entrada por cada partido finalizado.
+          -->
+          <ul id="matchHistory" class="list-group"></ul>
+        </section>
+
+        <!-- PIE DE PÁGINA. -->
+        <footer class="app-footer">
+          Alcázares Volley Elite · Panel de control deportivo
+        </footer>
+      </main>
+    </div>
+
+    <!-- =======================================================
+         9. CARGA DE BIBLIOTECAS Y ARCHIVOS JAVASCRIPT
+         =======================================================
+
+         Los scripts se cargan al final del body para que
+         los elementos HTML ya existan cuando JavaScript
+         intente encontrarlos con document.getElementById().
+    -->
+
+    <!-- SweetAlert2: ventanas modernas de alertas y confirmaciones. -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- Bootstrap: componentes interactivos de la biblioteca. -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <!-- alerts.js: funciones comunes para mostrar alertas. -->
+    <script src="js/alerts.js"></script>
+
+    <!-- storage.js: lectura y guardado de datos locales. -->
+    <script src="js/storage.js"></script>
+
+    <!-- dashboard.js: actualización de indicadores generales. -->
+    <script src="js/dashboard.js"></script>
+
+    <!-- players.js: creación y visualización de jugadores. -->
+    <script src="js/players.js"></script>
+
+    <!-- match.js: marcador, sets y finalización del partido. -->
+    <script src="js/match.js"></script>
+
+    <!-- actions.js: registro rápido e historial de jugadas. -->
+    <script src="js/actions.js"></script>
+
+    <!-- Chart.js: biblioteca para crear gráficas estadísticas. -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <!-- report.js: generación de informes y análisis. -->
+    <script src="js/report.js"></script>
+
+    <script src="js/report.js"></script>
+
+    <script>
+      /*
+       * Comprueba si el navegador admite Service Workers.
+       * Si no los admite, no intenta registrarlos.
+       */
+      if ("serviceWorker" in navigator) {
+        /*
+         * Espera a que termine la carga de la página
+         * antes de registrar el Service Worker.
+         */
+        window.addEventListener("load", () => {
+          /*
+           * Registra el archivo service-worker.js.
+           * La ruta relativa apunta al archivo ubicado
+           * en la carpeta principal del proyecto.
+           */
+          navigator.serviceWorker
+            .register("./service-worker.js")
+
+            // Informa en la consola si el registro funciona.
+            .then(() => {
+              console.log("Service Worker registrado correctamente");
+            })
+
+            // Muestra el error si el registro falla.
+            .catch((error) => {
+              console.error("Error al registrar el Service Worker:", error);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>

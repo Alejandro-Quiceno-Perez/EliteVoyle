@@ -1,0 +1,2201 @@
+/**
+
+* * Alcázares Volley Elite — hoja de estilos principal.*
+
+* * CSS controla la apariencia visual de la aplicación.*
+
+* * Los comentarios describen la finalidad de los bloques sin cambiar sus reglas.*
+
+* */
+
+
+
+
+
+/* Variables globales del tema; permiten reutilizar y cambiar los colores desde un solo lugar. */
+
+:root {
+
+    --bg: #101820;
+
+    --sidebar: #141f29;
+
+    --panel: #1b2834;
+
+    --panel-light: #233240;
+
+    --accent: #b9f45a;
+
+    --text: #f4f7fa;
+
+    --muted: #a0afbd;
+
+    --border: #30404d;
+
+}
+
+
+
+/* Regla global: incluye padding y bordes dentro del tamaño total de cada elemento. */
+
+* {
+
+    box-sizing: border-box;
+
+}
+
+
+
+/* Comportamiento general del documento y desplazamiento suave entre secciones. */
+
+html {
+
+    scroll-behavior: smooth;
+
+    scroll-padding-top: 24px;
+
+}
+
+
+
+/* Estilos base de la página: márgenes, fondo, color del texto y tipografía. */
+
+body {
+
+    margin: 0;
+
+    background: var(--bg);
+
+    color: var(--text);
+
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+
+}
+
+
+
+/* Contenedor general de la aplicación; ocupa como mínimo toda la altura visible. */
+
+.app-layout {
+
+    min-height: 100vh;
+
+}
+
+
+
+/* Menú lateral fijo en escritorio, organizado verticalmente. */
+
+.sidebar {
+
+    position: fixed;
+
+    inset: 0 auto 0 0;
+
+    width: 255px;
+
+    padding: 28px 18px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    background: var(--sidebar);
+
+    border-right: 1px solid var(--border);
+
+    z-index: 100;
+
+}
+
+
+
+/* Alinea el icono y el nombre de la aplicación. */
+
+.brand {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 48px;
+
+    color: var(--text);
+
+    text-decoration: none;
+
+}
+
+
+
+/* Muestra el nombre y el subtítulo de la marca en líneas separadas. */
+
+.brand strong,
+
+/* Formato del subtítulo de la marca con el color de acento. */
+
+.brand small {
+
+    display: block;
+
+}
+
+
+
+/* Formato del nombre principal de la marca. */
+
+.brand strong {
+
+    letter-spacing: 1px;
+
+    font-size: 15px;
+
+}
+
+
+
+.brand small {
+
+    color: var(--accent);
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+    margin-top: 4px;
+
+}
+
+
+
+/* Caja del icono de marca, con contenido centrado. */
+
+.brand-icon {
+
+    width: 43px;
+
+    height: 43px;
+
+    display: grid;
+
+    place-items: center;
+
+    border-radius: 12px;
+
+    background: var(--accent);
+
+    color: var(--bg);
+
+    font-size: 24px;
+
+    font-weight: 900;
+
+}
+
+
+
+/* Estilos compartidos para etiquetas pequeñas y textos secundarios. */
+
+.nav-label,
+
+.eyebrow {
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+
+}
+
+
+
+/* Espaciado de la etiqueta que identifica el menú. */
+
+.nav-label {
+
+    padding-left: 12px;
+
+    margin-bottom: 12px;
+
+}
+
+
+
+/* Distribuye los enlaces de navegación con separación uniforme. */
+
+.app-nav {
+
+    display: grid;
+
+    gap: 7px;
+
+}
+
+
+
+/* Distribución y apariencia de cada enlace de navegación. */
+
+.app-nav .nav-link {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding: 13px 12px;
+
+    border-radius: 9px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+
+}
+
+
+
+/* Resalta un enlace al pasar el cursor o cuando está seleccionado. */
+
+.app-nav .nav-link:hover,
+
+.app-nav .nav-link.active {
+
+    background: #293b48;
+
+    color: var(--accent);
+
+}
+
+
+
+/* Información secundaria situada al final del menú lateral. */
+
+.sidebar-footer {
+
+    margin-top: auto;
+
+    padding: 14px 5px 0;
+
+    border-top: 1px solid var(--border);
+
+    color: var(--muted);
+
+    font-size: 11px;
+
+}
+
+
+
+/* Pequeño punto visual que representa el estado de la aplicación. */
+
+.status-dot {
+
+    display: inline-block;
+
+    width: 8px;
+
+    height: 8px;
+
+    margin-right: 6px;
+
+    border-radius: 50%;
+
+    background: var(--accent);
+
+}
+
+
+
+/* Área principal; deja espacio para el menú lateral y limita el ancho. */
+
+.main-content {
+
+    max-width: 1800px;
+
+    margin-left: 255px;
+
+    padding: 32px;
+
+}
+
+
+
+/* Distribución horizontal compartida por la barra superior y encabezados. */
+
+.topbar,
+
+/* Espacio entre los encabezados de sección y su contenido. */
+
+.section-heading {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 16px;
+
+}
+
+
+
+/* Separación debajo de la barra superior. */
+
+.topbar {
+
+    margin-bottom: 28px;
+
+}
+
+
+
+/* Tamaño adaptable y peso del título principal. */
+
+.topbar h1 {
+
+    margin: 0;
+
+    font-size: clamp(24px, 3vw, 32px);
+
+    font-weight: 800;
+
+}
+
+
+
+/* Apariencia compartida de etiquetas compactas de estado. */
+
+.local-badge,
+
+.status-badge {
+
+    padding: 8px 12px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 999px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+}
+
+
+
+/* Panel de bienvenida con contenido alineado y fondo degradado. */
+
+.welcome-panel {
+
+    position: relative;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 24px;
+
+    min-height: 220px;
+
+    padding: 32px;
+
+    margin-bottom: 32px;
+
+    overflow: hidden;
+
+    border: 1px solid #3a4b47;
+
+    border-radius: 18px;
+
+    background: linear-gradient(120deg, #24352f, #1b2834 75%);
+
+}
+
+
+
+/* Tamaño adaptable y ancho máximo del título de bienvenida. */
+
+.welcome-panel h2 {
+
+    max-width: 520px;
+
+    font-size: clamp(25px, 3vw, 36px);
+
+    font-weight: 800;
+
+}
+
+
+
+/* Estilo del texto descriptivo del panel de bienvenida. */
+
+.welcome-panel p:not(.eyebrow) {
+
+    max-width: 540px;
+
+    color: var(--muted);
+
+}
+
+
+
+/* Tamaño adaptable y sombra del símbolo del balón. */
+
+.welcome-ball {
+
+    font-size: clamp(70px, 9vw, 120px);
+
+    filter: drop-shadow(0 12px 20px #0005);
+
+}
+
+
+
+.section-heading {
+
+    margin-bottom: 20px;
+
+}
+
+
+
+/* Unifica el peso de los títulos y elimina sus márgenes. */
+
+.section-heading h2,
+
+/* Tamaño del encabezado de subsección. */
+
+.section-heading h3 {
+
+    margin: 0;
+
+    font-weight: 750;
+
+}
+
+
+
+/* Tamaño del encabezado de sección principal. */
+
+.section-heading h2 {
+
+    font-size: 22px;
+
+}
+
+
+
+.section-heading h3 {
+
+    font-size: 17px;
+
+}
+
+
+
+/* Fondo, borde y esquinas compartidos por tarjetas y paneles. */
+
+.stat-card,
+
+/* Espaciado interno y margen de desplazamiento de los paneles. */
+
+.content-panel {
+
+    background: var(--panel);
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+}
+
+
+
+/* Espaciado interno de las tarjetas de estadísticas. */
+
+.stat-card {
+
+    height: 100%;
+
+    padding: 20px;
+
+}
+
+
+
+/* Caja visual del icono de cada estadística. */
+
+.stat-icon {
+
+    display: inline-grid;
+
+    width: 38px;
+
+    height: 38px;
+
+    margin-bottom: 16px;
+
+    place-items: center;
+
+    border-radius: 10px;
+
+    background: #34432d;
+
+    color: var(--accent);
+
+    font-size: 20px;
+
+}
+
+
+
+/* Texto descriptivo de cada estadística. */
+
+.stat-card p {
+
+    margin-bottom: 7px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+}
+
+
+
+/* Número destacado de cada estadística. */
+
+.stat-card strong {
+
+    font-size: 30px;
+
+    font-weight: 800;
+
+}
+
+
+
+.content-panel {
+
+    padding: 26px;
+
+    scroll-margin-top: 24px;
+
+}
+
+
+
+/* Apariencia de las etiquetas de formulario. */
+
+.form-label {
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+}
+
+
+
+/* Campos de formulario adaptados al tema oscuro. */
+
+.form-control,
+
+.form-select {
+
+    min-height: 44px;
+
+    background-color: #111c25;
+
+    border-color: var(--border);
+
+    color: var(--text);
+
+}
+
+
+
+/* Color del texto de ayuda dentro de los campos. */
+
+.form-control::placeholder {
+
+    color: #758696;
+
+}
+
+
+
+/* Resalta los campos cuando reciben el foco. */
+
+.form-control:focus,
+
+.form-select:focus {
+
+    background-color: #111c25;
+
+    border-color: var(--accent);
+
+    color: var(--text);
+
+    box-shadow: 0 0 0 3px #b9f45a20;
+
+}
+
+
+
+/* Colores de las opciones de listas desplegables. */
+
+.form-select option {
+
+    background: var(--panel);
+
+    color: var(--text);
+
+}
+
+
+
+/* Estilo del botón principal con el color de acento. */
+
+.btn-accent {
+
+    background: var(--accent);
+
+    border-color: var(--accent);
+
+    color: #142019;
+
+    font-weight: 750;
+
+}
+
+
+
+/* Cambio de color del botón principal al pasar el cursor. */
+
+.btn-accent:hover {
+
+    background: #c9ff79;
+
+    border-color: #c9ff79;
+
+    color: #142019;
+
+}
+
+
+
+/* Reduce la opacidad de los botones deshabilitados. */
+
+.btn:disabled {
+
+    opacity: 0.45;
+
+}
+
+
+
+/* Organiza el marcador en tres columnas: local, puntuación y rival. */
+
+.scoreboard-panel {
+
+    display: grid;
+
+    grid-template-columns: 1fr 1.3fr 1fr;
+
+    align-items: center;
+
+    gap: 16px;
+
+    padding: 30px 18px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 14px;
+
+    background: #111c25;
+
+    text-align: center;
+
+}
+
+
+
+/* Nombre del equipo; permite ajustar nombres largos. */
+
+.score-team h3 {
+
+    margin: 12px 0 4px;
+
+    font-size: 16px;
+
+    overflow-wrap: anywhere;
+
+}
+
+
+
+/* Estilo de las etiquetas pequeñas de los equipos. */
+
+.score-team small {
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    letter-spacing: 2px;
+
+}
+
+
+
+/* Recuadro para el emblema o icono del equipo. */
+
+.team-emblem {
+
+    display: inline-grid;
+
+    width: 52px;
+
+    height: 52px;
+
+    place-items: center;
+
+    border-radius: 15px;
+
+    background: var(--accent);
+
+    color: var(--bg);
+
+    font-size: 25px;
+
+    font-weight: 900;
+
+}
+
+
+
+/* Color diferenciado para el emblema del equipo rival. */
+
+.opponent-emblem {
+
+    background: #f87171;
+
+}
+
+
+
+/* Resalta la primera etiqueta del centro del marcador. */
+
+.score-center > p:first-child {
+
+    color: var(--accent);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+
+/* Números grandes y adaptables para mostrar el marcador. */
+
+.score-numbers {
+
+    font-size: clamp(36px, 5vw, 58px);
+
+    font-weight: 850;
+
+    letter-spacing: 3px;
+
+}
+
+
+
+/* Estilos compartidos para el título del partido y la información de sets. */
+
+.sets-label,
+
+.match-title {
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+}
+
+
+
+/* Centra los controles del marcador y permite que se ajusten en varias líneas. */
+
+.score-controls {
+
+    display: flex;
+
+    justify-content: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-top: 20px;
+
+}
+
+
+
+/* Bloque visual para mostrar el historial de sets. */
+
+.set-history {
+
+    margin-top: 22px;
+
+    padding: 16px;
+
+    border-radius: 10px;
+
+    background: #111c25;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+}
+
+
+
+/* Espacio entre elementos de las listas. */
+
+.player-list,
+
+.action-list {
+
+    gap: 8px;
+
+}
+
+
+
+/* Apariencia uniforme de las listas de jugadores, acciones e historial. */
+
+.player-list .list-group-item,
+
+.action-list .list-group-item,
+
+#matchHistory .list-group-item {
+
+    padding: 14px 16px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 9px;
+
+    background: #111c25;
+
+    color: var(--text);
+
+}
+
+
+
+/* Adapta las tarjetas del informe al tema oscuro. */
+
+#reportContent .card {
+
+    margin-bottom: 16px;
+
+    background: #111c25;
+
+    border-color: var(--border);
+
+    color: var(--text);
+
+}
+
+
+
+/* Color secundario del texto para mantener la coherencia visual. */
+
+#reportContent .text-muted,
+
+.text-secondary {
+
+    color: var(--muted) !important;
+
+}
+
+
+
+/* Impide que las gráficas excedan el ancho de su contenedor. */
+
+#reportContent canvas {
+
+    max-width: 100%;
+
+}
+
+
+
+/* Pie de página con borde superior y texto centrado. */
+
+.app-footer {
+
+    padding: 24px 0 8px;
+
+    border-top: 1px solid var(--border);
+
+    color: var(--muted);
+
+    text-align: center;
+
+    font-size: 12px;
+
+}
+
+
+
+/* Aumenta el espacio interno del contenido en pantallas grandes. */
+
+@media (min-width: 1400px) {
+
+    .main-content {
+
+        padding: 40px;
+
+    }
+
+}
+
+
+
+/* Ajustes de distribución para pantallas medianas. */
+
+@media (max-width: 1000px) {
+
+    .sidebar {
+
+        width: 205px;
+
+    }
+
+
+
+    .main-content {
+
+        margin-left: 205px;
+
+        padding: 24px;
+
+    }
+
+}
+
+
+
+/* Convierte el menú lateral en una barra superior para móviles. */
+
+@media (max-width: 700px) {
+
+    .sidebar {
+
+        position: static;
+
+        width: 100%;
+
+        padding: 16px;
+
+        border-right: 0;
+
+        border-bottom: 1px solid var(--border);
+
+    }
+
+
+
+    .brand {
+
+        margin-bottom: 18px;
+
+    }
+
+
+
+    .nav-label,
+
+    .sidebar-footer {
+
+        display: none;
+
+    }
+
+
+
+    .app-nav {
+
+        display: flex;
+
+        gap: 6px;
+
+        overflow-x: auto;
+
+        padding-bottom: 4px;
+
+    }
+
+
+
+    .app-nav .nav-link {
+
+        flex: 0 0 auto;
+
+        padding: 10px;
+
+        font-size: 12px;
+
+    }
+
+
+
+    .main-content {
+
+        margin-left: 0;
+
+        padding: 18px 12px;
+
+    }
+
+
+
+    .topbar {
+
+        align-items: flex-start;
+
+    }
+
+
+
+    .local-badge {
+
+        display: none;
+
+    }
+
+
+
+    .welcome-panel {
+
+        padding: 22px;
+
+    }
+
+
+
+    .welcome-ball {
+
+        font-size: 60px;
+
+    }
+
+
+
+    .content-panel {
+
+        padding: 18px;
+
+    }
+
+
+
+    .scoreboard-panel {
+
+        grid-template-columns: 1fr 1fr;
+
+    }
+
+
+
+    .score-center {
+
+        grid-column: 1 / -1;
+
+        grid-row: 1;
+
+    }
+
+
+
+    .score-team h3 {
+
+        font-size: 13px;
+
+    }
+
+
+
+    .score-controls .btn {
+
+        flex: 1 1 100%;
+
+    }
+
+}
+
+
+
+
+
+
+
+/* Registro rápido de jugadas */
+
+/* Espaciado interno del panel de registro rápido. */
+
+.quick-actions-panel {
+
+    padding: 22px;
+
+}
+
+
+
+/* Separación vertical entre los pasos del registro rápido. */
+
+.quick-step {
+
+    margin-top: 22px;
+
+}
+
+
+
+/* Formato de las etiquetas e instrucciones de cada paso. */
+
+.quick-label {
+
+    margin-bottom: 12px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+
+/* Distribuye los botones de jugadores en columnas adaptables. */
+
+.action-players-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
+
+    gap: 10px;
+
+}
+
+
+
+/* Diseño y alineación del botón de cada jugador. */
+
+.action-player-button {
+
+    min-height: 68px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 4px;
+
+    padding: 10px 6px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    background: #111c25;
+
+    color: var(--text);
+
+    cursor: pointer;
+
+    touch-action: manipulation;
+
+}
+
+
+
+/* Resalta al jugador seleccionado. */
+
+.action-player-button.selected {
+
+    border: 2px solid var(--accent);
+
+    background: #34432d;
+
+    color: var(--accent);
+
+}
+
+
+
+/* Destaca el número de camiseta del jugador. */
+
+.action-player-number {
+
+    font-size: 20px;
+
+    font-weight: 850;
+
+}
+
+
+
+/* Mantiene el nombre en una línea y recorta el texto si no cabe. */
+
+.action-player-name {
+
+    max-width: 100%;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    font-size: 12px;
+
+}
+
+
+
+/* Organiza las acciones rápidas en dos columnas. */
+
+.quick-action-grid {
+
+    display: grid;
+
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+
+    gap: 10px;
+
+}
+
+
+
+/* Estilo y distribución comunes de los botones de acción. */
+
+.quick-action-button {
+
+    min-height: 76px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    justify-content: center;
+
+    gap: 5px;
+
+    padding: 14px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 12px;
+
+    color: white;
+
+    cursor: pointer;
+
+    text-align: left;
+
+    touch-action: manipulation;
+
+    transition: transform 0.1s ease, filter 0.1s ease;
+
+}
+
+
+
+/* Distingue las acciones positivas con tonos verdes. */
+
+.quick-action-button.positive {
+
+    background: #185b3a;
+
+    border-color: #27774e;
+
+}
+
+
+
+/* Distingue las acciones negativas con tonos rojos. */
+
+.quick-action-button.negative {
+
+    background: #702d32;
+
+    border-color: #99454b;
+
+}
+
+
+
+/* Efecto visual breve al pulsar una acción habilitada. */
+
+.quick-action-button:active:not(:disabled) {
+
+    transform: scale(0.97);
+
+    filter: brightness(1.2);
+
+}
+
+
+
+/* Indica que el botón de acción no está disponible. */
+
+.quick-action-button:disabled {
+
+    opacity: 0.35;
+
+    cursor: not-allowed;
+
+}
+
+
+
+/* Texto principal del botón de acción. */
+
+.quick-action-name {
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+}
+
+
+
+/* Texto secundario que describe el resultado de la acción. */
+
+.quick-action-result {
+
+    font-size: 13px;
+
+}
+
+
+
+/* Alinea el mensaje de resultado y el botón para deshacer. */
+
+.quick-feedback-row {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-top: 18px;
+
+    padding-top: 14px;
+
+    border-top: 1px solid var(--border);
+
+}
+
+
+
+/* Formato del mensaje sobre la última jugada registrada. */
+
+#lastActionFeedback {
+
+    margin: 0;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    overflow-wrap: anywhere;
+
+}
+
+
+
+/* Evita que el botón para deshacer se encoja. */
+
+#undoLastActionButton {
+
+    flex-shrink: 0;
+
+    min-height: 44px;
+
+}
+
+
+
+/* Separa visualmente el historial de jugadas rápidas. */
+
+.quick-history {
+
+    margin-top: 18px;
+
+    padding-top: 14px;
+
+    border-top: 1px solid var(--border);
+
+}
+
+
+
+/* Apariencia de la cabecera que abre o cierra el historial. */
+
+.quick-history summary {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    cursor: pointer;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+}
+
+
+
+/* Formato secundario del contador de acciones. */
+
+#actionCountBadge {
+
+    color: var(--muted);
+
+    font-weight: 400;
+
+}
+
+
+
+/* Ajustes adicionales para teléfonos de pantalla pequeña. */
+
+@media (max-width: 480px) {
+
+    .quick-actions-panel {
+
+        padding: 15px;
+
+    }
+
+
+
+    .action-players-grid {
+
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+
+        gap: 8px;
+
+    }
+
+
+
+    .action-player-button {
+
+        min-height: 66px;
+
+    }
+
+
+
+    .quick-action-grid {
+
+        gap: 8px;
+
+    }
+
+
+
+    .quick-action-button {
+
+        min-height: 72px;
+
+        padding: 12px;
+
+    }
+
+
+
+    .quick-feedback-row {
+
+        align-items: stretch;
+
+    }
+
+
+
+    #lastActionFeedback {
+
+        flex: 1;
+
+    }
+
+}
+
+
+
+
+
+/* SweetAlert2: estilo oscuro y discreto */
+
+/* Personaliza el contenedor de las alertas de SweetAlert2. */
+
+.swal2-popup {
+
+    border: 1px solid #30404d !important;
+
+    border-radius: 16px !important;
+
+}
+
+
+
+/* Color del título de las alertas. */
+
+.swal2-title {
+
+    color: #e2e8f0 !important;
+
+}
+
+
+
+/* Color del texto descriptivo de las alertas. */
+
+.swal2-html-container {
+
+    color: #a0afbd !important;
+
+}
+
+
+
+/* Estilo compartido de los botones de confirmar y cancelar. */
+
+.swal2-confirm,
+
+/* Color del texto del botón de cancelación. */
+
+.swal2-cancel {
+
+    border-radius: 8px !important;
+
+    font-weight: 600 !important;
+
+    box-shadow: none !important;
+
+}
+
+
+
+/* Color del texto del botón de confirmación. */
+
+.swal2-confirm {
+
+    color: #f4f7fa !important;
+
+}
+
+
+
+.swal2-cancel {
+
+    color: #e2e8f0 !important;
+
+}
+
+
+
+
+
+/* ========================================*
+
+*   MEJORA MOBILE-FIRST — VOLLEYLAB*
+
+*   Sobrescribe únicamente estilos existentes*
+
+*======================================== */
+
+
+
+@media (max-width: 700px) {
+
+
+
+    /* Navegación más compacta */
+
+    .sidebar {
+
+        padding: 12px;
+
+    }
+
+
+
+    .brand {
+
+        margin-bottom: 12px;
+
+    }
+
+
+
+    .brand-icon {
+
+        width: 38px;
+
+        height: 38px;
+
+        font-size: 21px;
+
+    }
+
+
+
+    .app-nav {
+
+        gap: 6px;
+
+        scrollbar-width: thin;
+
+    }
+
+
+
+    .app-nav .nav-link {
+
+        min-height: 42px;
+
+        justify-content: center;
+
+        white-space: nowrap;
+
+    }
+
+
+
+    /* Aprovechar mejor el espacio */
+
+    .main-content {
+
+        padding: 14px 10px 28px;
+
+    }
+
+
+
+    .topbar {
+
+        gap: 8px;
+
+        margin-bottom: 18px;
+
+    }
+
+
+
+    .topbar h1 {
+
+        font-size: 23px;
+
+    }
+
+
+
+    .section-heading {
+
+        align-items: flex-start;
+
+        gap: 10px;
+
+    }
+
+
+
+    /* Paneles más compactos */
+
+    .content-panel {
+
+        padding: 15px;
+
+        border-radius: 12px;
+
+    }
+
+
+
+    /* Marcador más legible */
+
+    .scoreboard-panel {
+
+        gap: 12px 6px;
+
+        padding: 20px 10px;
+
+    }
+
+
+
+    .score-numbers {
+
+        font-size: clamp(42px, 12vw, 58px);
+
+        letter-spacing: 1px;
+
+    }
+
+
+
+    .team-emblem {
+
+        width: 44px;
+
+        height: 44px;
+
+        border-radius: 12px;
+
+        font-size: 21px;
+
+    }
+
+
+
+    .score-team h3 {
+
+        font-size: 13px;
+
+        overflow-wrap: anywhere;
+
+    }
+
+
+
+    /* Controles del marcador: dos columnas */
+
+    .score-controls {
+
+        display: grid;
+
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+
+        gap: 8px;
+
+    }
+
+
+
+    .score-controls .btn {
+
+        width: 100%;
+
+        min-height: 48px;
+
+        padding: 10px 8px;
+
+        font-size: 13px;
+
+    }
+
+
+
+    /* Acciones rápidas: áreas táctiles cómodas */
+
+    .action-player-button {
+
+        min-height: 64px;
+
+    }
+
+
+
+    .quick-action-button {
+
+        min-height: 76px;
+
+        padding: 12px;
+
+    }
+
+
+
+    .quick-action-name {
+
+        font-size: 14px;
+
+    }
+
+
+
+    /* Evitar que los controles se salgan de pantalla */
+
+    .quick-feedback-row {
+
+        flex-wrap: wrap;
+
+    }
+
+
+
+    #undoLastActionButton {
+
+        min-height: 46px;
+
+    }
+
+
+
+    /* Accesibilidad: foco visible al navegar */
+
+    .app-nav .nav-link:focus-visible,
+
+    .score-controls .btn:focus-visible,
+
+    .action-player-button:focus-visible,
+
+    .quick-action-button:focus-visible {
+
+        outline: 2px solid var(--accent);
+
+        outline-offset: 3px;
+
+    }
+
+}
+
+
+
+/* Teléfonos estrechos */
+
+@media (max-width: 380px) {
+
+
+
+    .main-content {
+
+        padding-right: 8px;
+
+        padding-left: 8px;
+
+    }
+
+
+
+    .content-panel,
+
+    .quick-actions-panel {
+
+        padding: 12px;
+
+    }
+
+
+
+    .action-players-grid {
+
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+
+        gap: 6px;
+
+    }
+
+
+
+    .action-player-name {
+
+        font-size: 11px;
+
+    }
+
+
+
+    .score-controls .btn {
+
+        font-size: 12px;
+
+        padding: 9px 5px;
+
+    }
+
+}
+
+
+
+/* =========================================================
+   VOLLEYLAB — AJUSTES RESPONSIVE APLICADOS AL CSS ORIGINAL
+   Conserva todas las reglas y funcionalidades existentes.
+   ========================================================= */
+
+html,
+body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
+img,
+canvas,
+video,
+svg {
+    max-width: 100%;
+}
+
+button,
+.btn,
+input,
+select,
+textarea {
+    font-size: 16px;
+}
+
+@media (max-width: 700px) {
+    .app-layout {
+        width: 100%;
+        min-width: 0;
+    }
+
+    .sidebar {
+        position: relative;
+        inset: auto;
+        width: 100%;
+        height: auto;
+        min-width: 0;
+        padding: 12px;
+    }
+
+    .brand {
+        margin-bottom: 12px;
+    }
+
+    .app-nav {
+        display: flex;
+        width: 100%;
+        max-width: 100%;
+        gap: 6px;
+        overflow-x: auto;
+        overflow-y: hidden;
+        padding: 0 0 8px;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .app-nav .nav-link {
+        flex: 0 0 auto;
+        min-height: 44px;
+        white-space: nowrap;
+    }
+
+    .main-content {
+        width: 100%;
+        min-width: 0;
+        margin-left: 0;
+        padding: 14px 10px 28px;
+    }
+
+    .topbar,
+    .section-heading {
+        flex-wrap: wrap;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .topbar h1 {
+        font-size: clamp(21px, 6vw, 28px);
+        overflow-wrap: anywhere;
+    }
+
+    .welcome-panel {
+        min-height: 0;
+        padding: 18px;
+        gap: 12px;
+    }
+
+    .welcome-panel h2 {
+        font-size: clamp(22px, 6vw, 30px);
+    }
+
+    .welcome-ball {
+        font-size: clamp(42px, 12vw, 64px);
+    }
+
+    .content-panel,
+    .quick-actions-panel {
+        min-width: 0;
+        padding: 14px;
+    }
+
+    .scoreboard-panel {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        gap: 12px 6px;
+        padding: 18px 8px;
+    }
+
+    .score-center {
+        grid-column: 1 / -1;
+        grid-row: 1;
+        min-width: 0;
+    }
+
+    .score-team {
+        min-width: 0;
+    }
+
+    .score-team h3 {
+        font-size: 13px;
+        overflow-wrap: anywhere;
+    }
+
+    .score-numbers {
+        font-size: clamp(38px, 12vw, 56px);
+        letter-spacing: 0;
+    }
+
+    .score-controls {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        width: 100%;
+        gap: 8px;
+    }
+
+    .score-controls .btn {
+        width: 100%;
+        min-width: 0;
+        min-height: 48px;
+        padding: 9px 6px;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    .action-players-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 7px;
+    }
+
+    .action-player-button {
+        min-width: 0;
+        min-height: 62px;
+        padding: 8px 4px;
+    }
+
+    .action-player-name {
+        max-width: 100%;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 11px;
+    }
+
+    .quick-action-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+    }
+
+    .quick-action-button {
+        min-width: 0;
+        min-height: 70px;
+        padding: 10px;
+        overflow-wrap: anywhere;
+    }
+
+    .quick-action-name {
+        font-size: 13px;
+    }
+
+    .quick-feedback-row {
+        flex-wrap: wrap;
+        align-items: flex-start;
+    }
+
+    #lastActionFeedback {
+        flex: 1 1 160px;
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    #undoLastActionButton {
+        min-height: 44px;
+    }
+
+    .form-control,
+    .form-select {
+        width: 100%;
+        min-width: 0;
+        min-height: 44px;
+        font-size: 16px;
+    }
+
+    .table-responsive {
+        max-width: 100%;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    #reportContent,
+    #matchHistory {
+        max-width: 100%;
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    #reportContent canvas {
+        max-width: 100% !important;
+    }
+}
+
+@media (max-width: 380px) {
+    .main-content {
+        padding-right: 8px;
+        padding-left: 8px;
+    }
+
+    .content-panel,
+    .quick-actions-panel {
+        padding: 11px;
+    }
+
+    .action-players-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 5px;
+    }
+
+    .score-controls .btn {
+        font-size: 12px;
+        padding: 8px 4px;
+    }
+
+    .quick-action-button {
+        padding: 8px;
+    }
+}
